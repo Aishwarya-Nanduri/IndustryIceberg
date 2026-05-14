@@ -1,5 +1,5 @@
 import { useParams, useNavigate } from "react-router-dom";
-import { products, services } from "../data/cardsData";
+import { products, services } from "../data/cardsdata";
 import { ArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 

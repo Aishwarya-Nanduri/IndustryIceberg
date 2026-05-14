@@ -2,7 +2,7 @@ import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import pharma from "../assets/hero_img.png";
-import { products, services } from "../data/cardsData";
+import { products, services } from "../data/cardsdata";
 import FooterSection from "../components/FooterSection";
 
 export default function Home() {

@@ -1,32 +1,22 @@
-import "./Navbar.scss";
 import logo from "../assets/logo.png";
 import { useEffect, useState } from "react";
+import { Moon, Sun } from "lucide-react";
 
 export default function Navbar() {
-
-  /* =========================
-     THEME STATE
-  ========================= */
-
-  const [darkMode, setDarkMode] = useState(false);
-
-  /* =========================
-     APPLY THEME
-  ========================= */
+  const [darkMode, setDarkMode] = useState(() => {
+    const saved = localStorage.getItem("theme");
+    return saved === "dark" || (!saved && window.matchMedia("(prefers-color-scheme: dark)").matches);
+  });
 
   useEffect(() => {
-
     if (darkMode) {
       document.body.classList.add("dark-theme");
+      localStorage.setItem("theme", "dark");
     } else {
       document.body.classList.remove("dark-theme");
+      localStorage.setItem("theme", "light");
     }
-
   }, [darkMode]);
-
-  /* =========================
-     SCROLL FUNCTION
-  ========================= */
 
   const scrollTo = (id) => {
     document.getElementById(id)?.scrollIntoView({
@@ -35,81 +25,45 @@ export default function Navbar() {
   };
 
   return (
-
-    <nav className="navbar">
-
-      {/* LOGO */}
-
-      <div className="logo">
-        <img src={logo} alt="Iceberg Logo" />
-      </div>
-
-      {/* SEARCH */}
-
-      <div className="nav-search">
-        <input type="text" placeholder="Search..." />
-      </div>
-
-      {/* =========================
-          NAV LINKS
-      ========================= */}
-
-      {/*
-      <div className="nav-links">
-
-        <a onClick={() => scrollTo("who-we-are")}>
-          Who we are
-        </a>
-
-        <div className="nav-item dropdown">
-
-          <a>Products</a>
-
-          <div className="dropdown-menu">
-            <div>Compliance Loop</div>
-            <div>CompliSense</div>
-            <div>VeritaScribe</div>
-            <div>Live LMS-Videobased</div>
-            <div>ECTD AI</div>
-          </div>
-
+    <nav className="fixed top-5 left-1/2 -translate-x-1/2 w-[90%] max-w-[1200px] z-[1000] px-6 py-3 bg-bg-surface/80 backdrop-blur-xl border border-text-primary/10 rounded-full transition-all duration-500 shadow-lg">
+      <div className="flex items-center justify-between w-full">
+        {/* LOGO */}
+        <div className="cursor-pointer" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
+          <img src={logo} alt="Iceberg Logo" className="h-8 w-auto drop-shadow-sm" />
         </div>
 
-        <div className="nav-item dropdown">
-
-          <a>Services</a>
-
-          <div className="dropdown-menu">
-            <div>Complaint Site Selection</div>
-            <div>Video Creation Service</div>
-            <div>AI Technologies & Solutions</div>
-            <div>Enterprise LLM Solutions</div>
-          </div>
-
+        {/* NAV LINKS */}
+        <div className="hidden md:flex items-center gap-8">
+          {['Home', 'Solutions', 'Contact'].map((item) => (
+            <a 
+              key={item}
+              onClick={() => scrollTo(item.toLowerCase() === 'home' ? 'hero' : item.toLowerCase())}
+              className="text-sm font-medium text-text-primary opacity-70 hover:opacity-100 cursor-pointer transition-all relative group"
+            >
+              {item}
+              <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-gradient-accent transition-all duration-300 group-hover:w-full"></span>
+            </a>
+          ))}
         </div>
 
-        <a onClick={() => scrollTo("blogs")}>
-          Blogs
-        </a>
-
+        {/* RIGHT SIDE */}
+        <div className="flex items-center gap-4">
+          <button 
+            className="p-2 rounded-full text-text-primary bg-text-primary/5 hover:bg-text-primary/10 transition-all hover:rotate-12" 
+            onClick={() => setDarkMode(!darkMode)}
+            aria-label="Toggle Theme"
+          >
+            {darkMode ? <Sun size={18} /> : <Moon size={18} />}
+          </button>
+          
+          <button 
+            className="px-6 py-2.5 bg-text-primary text-bg-main rounded-full text-sm font-bold transition-all hover:scale-105 hover:brightness-110 active:scale-95 shadow-md"
+            onClick={() => scrollTo("footer")}
+          >
+            Get in Touch
+          </button>
+        </div>
       </div>
-      */}
-
-      {/* RIGHT SIDE */}
-
-      <div className="nav-right">
-
-        {/*
-        <button
-          className="btn secondary"
-          onClick={() => scrollTo("contact")}
-        >
-          <span>Contact Us</span>
-        </button>
-        */}
-
-      </div>
-
     </nav>
   );
-}
+}

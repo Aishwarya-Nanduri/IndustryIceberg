@@ -1,122 +1,93 @@
 .card-details-page {
+  padding: 150px 5% 100px;
+  background-color: var(--color-bg-main);
   min-height: 100vh;
-  background: #f8fafc;
   display: flex;
   justify-content: center;
-  padding: 60px 20px;
-  font-family: "Inter", sans-serif;
 }
 
-/* Main container */
 .card-details-container {
+  max-width: 900px;
   width: 100%;
-  max-width: 1152px;
-  background: #ffffff;
-  margin-top: 40px;
-  margin-bottom: 10px;
-  border-radius: 18px;
-  padding: 100px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  background: var(--color-bg-surface);
+  padding: 60px;
+  border-radius: var(--radius-xl);
+  border: 1px solid color-mix(in srgb, var(--color-text-primary), transparent 95%);
+  box-shadow: 0 40px 80px rgba(0, 0, 0, 0.1);
+
+  @media (max-width: 768px) {
+    padding: 30px;
+  }
 }
 
-/* HEADER SECTION */
 .details-header {
-  margin-bottom: 30px;
-}
+  margin-bottom: 40px;
+  border-bottom: 1px solid color-mix(in srgb, var(--color-text-primary), transparent 90%);
+  padding-bottom: 40px;
 
-/* PRODUCT / SERVICE pill */
-.details-pill {
-  display: inline-block;
-  font-size: 12px;
-  letter-spacing: 2px;
-  font-weight: 700;
-  padding: 6px 14px;
-  border-radius: 999px;
-  margin-bottom: 18px;
-}
-
-/* PRODUCT style */
-.details-pill.product {
-  background: rgba(74, 155, 73, 0.12);
-  color: #4a9b49ad;
-  font-family: "Kalam", "Comic Sans MS", cursive;
-}
-
-/* SERVICE style */
-.details-pill.service {
-  background:rgba(74, 155, 73, 0.12);
-  color: #4a9b49ad;
-  font-family: "Kalam", "Comic Sans MS", cursive;
-}
-
-/* TITLE */
-.details-title {
-  font-size: 30px;  
-  font-weight: 800;
-  color:  #4a9b49ad;
-  margin-bottom: 10px;
-  line-height: 1.2;
-}
-
-/* DESCRIPTION */
-.details-description {
-  font-size: 16px;
-  color: #2d6fa1;
-  line-height: 1.6;
-  font-family: "Kalam", "Comic Sans MS", cursive;
-}
-
-/* CONTENT */
-.details-content {
-  margin-top: 30px;
-  font-family: "Kalam", "Comic Sans MS", cursive;
-  color: #2d6fa1;
-}
-
-/* headings */
-.details-content h2 {
-  font-size: 24px;
-  margin-bottom: 10px;
-  color: #0f172a;
-}
-
-.details-content h3 {
-  font-size: 18px;
-  margin: 15px 0 8px;
-  color: #1e293b;
-}
-
-/* paragraph */
-.details-content p {
-  font-size: 16px;
-   color: #2d6fa1;
-  line-height: 1.7;
-}
-
-/* sections */
-.content-section {
-  margin-bottom: 20px;
-  padding-left: 14px;
-  border-left: 3px solid #e2e8f0;
-}
-
-/* empty */
-.no-content {
-  color: #94a3b8;
-  font-style: italic;
-}
-
-/* responsive */
-@media (max-width: 768px) {
-  .card-details-container {
-    padding: 25px;
+  .details-pill {
+    padding: 6px 16px;
+    border-radius: var(--radius-pill);
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 20px;
+    display: inline-block;
+    
+    &.product {
+      background: rgba(var(--color-accent-primary), 0.1);
+      color: var(--color-accent-primary);
+      border: 1px solid var(--color-accent-primary);
+    }
+    
+    &.service {
+      background: rgba(var(--color-highlight), 0.1);
+      color: var(--color-highlight);
+      border: 1px solid var(--color-highlight);
+    }
   }
 
   .details-title {
-    font-size: 28px;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    margin-bottom: 24px;
+    color: var(--color-text-primary);
+    line-height: 1.1;
   }
 
   .details-description {
-    font-size: 16px;
+    font-size: 20px;
+    color: var(--color-text-secondary);
+    line-height: 1.5;
+    opacity: 0.8;
+  }
+}
+
+.details-content {
+  color: var(--color-text-primary);
+
+  h2 {
+    font-size: 28px;
+    margin: 40px 0 20px;
+  }
+
+  p {
+    font-size: 18px;
+    line-height: 1.8;
+    color: var(--color-text-secondary);
+    margin-bottom: 24px;
+  }
+
+  .content-section {
+    margin-top: 40px;
+    
+    h3 {
+      font-size: 22px;
+      margin-bottom: 16px;
+      color: var(--color-text-primary);
+    }
+    
+    p {
+      font-size: 16px;
+      opacity: 0.9;
+    }
   }
 }
